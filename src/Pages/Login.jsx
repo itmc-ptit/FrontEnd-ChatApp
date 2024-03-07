@@ -1,7 +1,6 @@
 import { Button, Row, Col, Form } from "react-bootstrap";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { React, useState } from "react";
-import { ReactDOM, render } from "react-dom";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
@@ -18,32 +17,11 @@ const Account_User = [
   },
 ];
 
-function checkLogin(user, pwd) {
-  for (var i = 0; i < Account_User.length; i++) {
-    if (user == Account_User[i].Account && pwd == Account_User[i].Password) {
-      return true;
-    }
+function checkLogin(account, pwd) {
+  for (var User of Account_User) {
+    if (User.Account == account && User.Password == pwd) return true;
   }
   return false;
-}
-
-function Login_Event() {
-  if (
-    checkLogin(
-      document.getElementById("text-account").value,
-      document.getElementById("text-password").value
-    )
-  ) {
-    () => Navigate("/chat");
-  } else {
-    const container = document.getElementById("Message");
-    render(<Message msg="home" />, container);
-
-    ReactDOM.render(
-      <Message msg="Đăng nhập thất bại" variant="danger" />,
-      document.getElementById("Message")
-    );
-  }
 }
 
 export default function Login() {
