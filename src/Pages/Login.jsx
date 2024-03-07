@@ -2,6 +2,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import { React, useState } from "react";
 import { ReactDOM, render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import Message from "./Message";
@@ -50,6 +51,11 @@ export default function Login() {
   const [Pwd, setPwd] = useState("");
   const handleUserChange = (event) => setUser(event.target.value);
   const handlePwdChange = (event) => setPwd(event.target.value);
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/chat");
+  };
+
   return (
     <>
       <Form.Label style={{ paddingTop: "10vh", fontSize: "42px" }}>
@@ -94,9 +100,17 @@ export default function Login() {
           <Col sm={8}>
             <Button
               variant="outline-primary"
-              onClick={() => {
-                useNavigate("chat");
-              }}
+              onClick={
+                checkLogin(User, Pwd)
+                  ? handleButtonClick
+                  : () => {
+                      const container = document.getElementById("Message");
+                      const mess = createRoot(container);
+                      mess.render(
+                        <Message msg="Đăng nhập thất bại" variant="danger" />
+                      );
+                    }
+              }
             >
               Đăng nhập
             </Button>
