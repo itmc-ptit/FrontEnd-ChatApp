@@ -1,5 +1,5 @@
 {
-  "name": "frontend-chatapp",
+  "name": "login-page",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.1.0",
+    "bootstrap": "^5.3.3",
+    "components": "^0.1.0",
+    "mdb-react-ui-kit": "^7.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.10.1",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.22.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
@@ -21,6 +27,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "react-router-dom": "^6.22.2",
     "vite": "^5.1.4"
   }
 }

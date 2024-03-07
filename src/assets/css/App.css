@@ -1,0 +1,46 @@
+* {
+    font-size: 18px;
+}
+.Container {
+    text-align: center;
+}
+
+.btn-outline-primary,
+.btn-outline-success {
+    margin-left: 20px !important;
+    float: right;
+}
+
+.form-label {
+    margin: 0px;
+}
+
+.form-label,
+.form-control {
+    margin-bottom: 25px !important;
+    padding-right: 0 !important;
+}
+
+.panel2 {
+    position: absolute;
+    top: 35%;
+    padding: 10px;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.alert-danger {
+    color: red;
+    margin-top: 18px;
+    /* background-color: #fff !important; */
+    border: 0px;
+}
+
+.alert-success {
+    color: green;
+    margin-top: 18px;
+    /* background-color: #fff !important; */
+    border: 0px;
+}

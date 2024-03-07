@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Container, Row, Col } from "react-bootstrap";
+import { React } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/App.css";
+import { Slider } from "./Pages/Slider";
+import Login from "./Pages/Login";
 
-function App() {
-  const [count, setCount] = useState(0)
 
+export default function App() {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Container fluid className="Container">
+        <Row>
+          <Col xs={6} sm={6} lg={6} className="col1">
+            <Slider />
+          </Col>
+          <Col xs={6} sm={6} lg={6} className="col2">
+            <Login />
+          </Col>
+        </Row>
+      </Container>
     </>
-  )
+  );
 }
-
-export default App
