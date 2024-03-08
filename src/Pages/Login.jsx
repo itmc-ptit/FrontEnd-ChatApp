@@ -1,10 +1,11 @@
-import { Button, Row, Col, Form } from "react-bootstrap";
+import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { React, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import Message from "./Message";
+import { Slider } from "./Slider";
 
 const Account_User = [
   {
@@ -24,7 +25,7 @@ function checkLogin(account, pwd) {
   return false;
 }
 
-export default function Login() {
+function Login() {
   const [User, setUser] = useState("");
   const [Pwd, setPwd] = useState("");
   const handleUserChange = (event) => setUser(event.target.value);
@@ -51,6 +52,7 @@ export default function Login() {
               placeholder="Account"
               onChange={handleUserChange}
               value={User}
+              autoFocus
             />
           </Col>
           <Form.Label column sm={4}>
@@ -99,6 +101,24 @@ export default function Login() {
           <div id="Message"></div>
         </Row>
       </div>
+    </>
+  );
+}
+
+export default function UI() {
+  return (
+    <>
+      <Container fluid className="Container">
+        <Row>
+          <Col xs={6} sm={6} lg={6} className="col1">
+            <Slider />
+          </Col>
+          <Col xs={6} sm={6} lg={6} className="col2">
+            <Login />
+          </Col>
+        </Row>
+      </Container>
+      ;
     </>
   );
 }
