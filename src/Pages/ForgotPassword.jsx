@@ -5,7 +5,11 @@ import { Slider } from "./Slider";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ForgotPassword() {
+function SendEmail() {
+  //TODO: Send new password to email user
+}
+
+function PanelForgotPassword() {
   const [Account, setAccount] = useState("");
   const handleAccountChange = (event) => setAccount(event.target.value);
   return (
@@ -86,15 +90,18 @@ function ForgotPassword() {
             display: "inline-block",
           }}
         >
-          <Button
-            variant="outline-primary"
-            style={{
-              margin: "2% 5%",
-              float: "right",
-            }}
-          >
-            Tìm tài khoản
-          </Button>
+          <Link to="/send-email">
+            <Button
+              variant="outline-primary"
+              style={{
+                margin: "2% 5%",
+                float: "right",
+              }}
+              onClick={SendEmail()}
+            >
+              Tìm tài khoản
+            </Button>
+          </Link>
           <Link to="/sign-in">
             <Button
               variant="outline-danger"
@@ -121,11 +128,10 @@ export default function UI() {
             <Slider />
           </Col>
           <Col xs={6} sm={6} lg={6} className="col2">
-            <ForgotPassword />
+            <PanelForgotPassword />
           </Col>
         </Row>
       </Container>
-      ;
     </>
   );
 }

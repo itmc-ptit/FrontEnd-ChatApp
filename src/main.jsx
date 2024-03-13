@@ -9,6 +9,7 @@ import Chat from "./Pages/Messenger";
 import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
+import MessageForgotPassword from "./Pages/MessageForgotPassword";
 
 export const IsLogin = false;
 
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/send-email" element={<MessageForgotPassword />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
