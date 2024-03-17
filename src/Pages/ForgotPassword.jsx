@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
-import { Slider } from "./Slider";
+import { Slider } from "../Components/Slider";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 

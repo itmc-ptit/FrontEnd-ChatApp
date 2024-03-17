@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import Message from "./Message";
+import Message from "../Components/Message";
 import { Link } from "react-router-dom";
 
 export default function MessageForgotPassword() {

@@ -1,29 +1,11 @@
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { React, useState } from "react";
-import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
-import Message from "./Message";
-import { Slider } from "./Slider";
-
-const Account_User = [
-  {
-    Account: "admin",
-    Password: "123",
-  },
-  {
-    Account: "user",
-    Password: "321",
-  },
-];
-
-function checkLogin(account, pwd) {
-  for (var User of Account_User) {
-    if (User.Account == account && User.Password == pwd) return true;
-  }
-  return false;
-}
+import Message from "../Components/Message";
+import { Slider } from "../Components/Slider";
+import axios from "axios";
 
 function Login() {
   const [User, setUser] = useState("");
@@ -33,6 +15,16 @@ function Login() {
   const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate("/chat");
+  };
+  const SubmitHandler = async () => {
+    try {
+      await axios.post("http://localhost:4000/api/login", {
+        email: User,
+        password: Pwd,
+      });
+    } catch (error) {
+      throw new Error(error.Message);
+    }
   };
 
   return (
@@ -88,20 +80,7 @@ function Login() {
             </Link>
           </Col>
           <Col sm={8}>
-            <Button
-              variant="outline-primary"
-              onClick={
-                checkLogin(User, Pwd)
-                  ? handleButtonClick
-                  : () => {
-                      const container = document.getElementById("Message");
-                      const mess = createRoot(container);
-                      mess.render(
-                        <Message msg="Đăng nhập thất bại" variant="danger" />
-                      );
-                    }
-              }
-            >
+            <Button variant="outline-primary" onClick={SubmitHandler}>
               Đăng nhập
             </Button>
             <Link to="/sign-up">
