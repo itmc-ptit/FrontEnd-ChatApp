@@ -7,7 +7,9 @@ export default function Message(props) {
   const { msg, variant } = props;
   return (
     <>
-      <Alert variant={variant}> {msg}</Alert>
+      <div style={{ textAlign: "center" }}>
+        <Alert variant={variant}> {msg}</Alert>
+      </div>
     </>
   );
 }

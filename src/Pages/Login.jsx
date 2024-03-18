@@ -1,6 +1,7 @@
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { React, useState } from "react";
+import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import Message from "../Components/Message";
@@ -8,25 +9,70 @@ import { Slider } from "../Components/Slider";
 import axios from "axios";
 
 function Login() {
+  // const http = axios.create({
+  //   baseURL: "http:localhost:4000",
+  //   timeout: 10000,
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
   const [User, setUser] = useState("");
   const [Pwd, setPwd] = useState("");
   const handleUserChange = (event) => setUser(event.target.value);
   const handlePwdChange = (event) => setPwd(event.target.value);
   const navigate = useNavigate();
-  const handleButtonClick = () => {
-    navigate("/chat");
+  const Error_Message = (data) => {
+    const container = document.getElementById("Message");
+    const mess = createRoot(container);
+    mess.render(<Message msg={data} variant="danger" />);
   };
   const SubmitHandler = async () => {
+    if (!User || !Pwd) {
+      Error_Message("Vui lòng nhập đủ tài khoản và mật khẩu");
+      return;
+    }
     try {
-      await axios.post("http://localhost:4000/api/login", {
+      const response = await axios.post("http://localhost:4000/api/login", {
         email: User,
         password: Pwd,
       });
+      const userData = response.data;
+      if (response.status == 200 && userData.data.token) {
+        localStorage.setItem(
+          "User",
+          JSON.stringify({
+            token: "Bearer " + userData.data.token,
+            name: userData.data.name,
+            email: userData.data.email,
+            avatar: userData.data.avatar,
+          })
+        );
+        navigate("chat");
+      } else {
+        Error_Message("Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại");
+      }
     } catch (error) {
-      throw new Error(error.Message);
+      if (error.response && error.response.data) {
+        Error_Message(error.response.data.message);
+        throw new Error(error.response.data.message);
+      }
+      Error_Message(error.message);
+      throw new Error(error.message);
     }
   };
-
+  const getUserInformation = async (id) => {
+    const config = {
+      headers: {
+        Authorization: `${JSON.parse(localStorage.getItem("User")).token}`,
+      },
+    };
+    const { data } = await axios.get(
+      `http://localhost:4000/api/users/${id}`,
+      config
+    );
+    return data;
+  };
+  getUserInformation(1).then((data) => console.log(data));
   return (
     <>
       <Form.Label
