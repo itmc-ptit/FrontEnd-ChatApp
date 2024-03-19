@@ -128,7 +128,6 @@ export default function UI() {
           </Col>
         </Row>
       </Container>
-      ;
     </>
   );
 }
