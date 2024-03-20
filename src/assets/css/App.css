@@ -25,6 +25,7 @@
 
 .row {
     margin: 0 !important;
+    padding-left: 0 !important;
 }
 
 .alert-danger {
