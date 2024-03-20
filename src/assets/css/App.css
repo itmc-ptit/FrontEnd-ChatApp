@@ -25,6 +25,7 @@
 
 .row {
     margin: 0 !important;
+    padding-left: 0 !important;
 }
 
 .alert-danger {
@@ -37,4 +38,13 @@
     color: green;
     margin-top: 18px;
     border: 0px;
+}
+
+#DateTime
+{
+    ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
 }
