@@ -13,7 +13,7 @@
 
 .form-label,
 .form-control {
-    margin-bottom: 25px !important;
+    margin-bottom: 25px;
     padding-right: 0 !important;
 }
 
@@ -37,4 +37,10 @@
     color: green;
     margin-top: 18px;
     border: 0px;
+}
+
+.panel {
+    box-shadow: 10px 10px 32px 0px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 10px 10px 32px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 10px 10px 32px 0px rgba(0, 0, 0, 0.3);
 }
