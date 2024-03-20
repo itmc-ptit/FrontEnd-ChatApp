@@ -13,7 +13,7 @@
 
 .form-label,
 .form-control {
-    margin-bottom: 25px !important;
+    margin-bottom: 25px;
     padding-right: 0 !important;
 }
 
@@ -40,11 +40,8 @@
     border: 0px;
 }
 
-#DateTime
-{
-    ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-    color: transparent;
-}
+.panel {
+    box-shadow: 10px 10px 32px 0px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 10px 10px 32px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 10px 10px 32px 0px rgba(0, 0, 0, 0.3);
 }
