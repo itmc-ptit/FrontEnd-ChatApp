@@ -37,15 +37,22 @@ function Login() {
 
   return (
     <>
-      <Form.Label style={{ paddingTop: "10vh", fontSize: "42px" }}>
+      <Form.Label
+        style={{
+          paddingTop: "10vh",
+          fontSize: "60px",
+          textAlign: "center",
+          width: "100%",
+        }}
+      >
         Đăng nhập
       </Form.Label>
       <div className="panel2">
         <Row className="row2">
-          <Form.Label column sm={4}>
+          <Form.Label column sm={3}>
             Tài khoản
           </Form.Label>
-          <Col sm={8}>
+          <Col sm={9}>
             <Form.Control
               id="text-account"
               type="text"
@@ -55,10 +62,10 @@ function Login() {
               autoFocus
             />
           </Col>
-          <Form.Label column sm={4}>
+          <Form.Label column sm={3}>
             Mật khẩu
           </Form.Label>
-          <Col sm={8}>
+          <Col sm={9}>
             <Form.Control
               id="text-password"
               type="password"
@@ -67,10 +74,13 @@ function Login() {
               value={Pwd}
             />
           </Col>
-          <Col sm={4} style={{ textAlign: "center" }}>
+          <Col sm={4}>
             <Link to="/forgotpassword">
               <Button
-                style={{ float: "right", textDecoration: "none" }}
+                style={{
+                  textDecoration: "none",
+                  padding: "0",
+                }}
                 variant="link"
               >
                 Quên mật khẩu?
@@ -118,7 +128,6 @@ export default function UI() {
           </Col>
         </Row>
       </Container>
-      ;
     </>
   );
 }
