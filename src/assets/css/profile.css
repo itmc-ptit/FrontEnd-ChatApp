@@ -1,0 +1,35 @@
+body{
+    margin: 10;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100px;
+    background: lightgray;
+}
+
+.upc{
+    width: 100%;
+    border-radius: 15px;
+    padding-bottom: 20px;
+    background: #fef3ed;   
+}
+.gradiant{
+    background-image: linear-gradient(#da84aa, #fdcfc9);
+    height: 125px;
+    border-radius: 4px 4px 0px 0px;
+}
+.profile-down img{
+    height: 160px;
+    border-radius: 100px;
+    margin-top: -75px;
+    padding: 5px;
+    background: #fef3ed;
+}
+.profile-title{
+    font-size: 36px;
+    font-weight: 600;
+}
+.profile-description{
+    padding: 20px 20px;
+    font-size: 23px;
+}
