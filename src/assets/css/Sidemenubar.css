@@ -1,0 +1,8 @@
+.nav-pills li a
+{
+    display: inline-block;
+    width: 100%;
+}
+.nav-pills li a:hover{
+    background-color:#878dbc;
+}

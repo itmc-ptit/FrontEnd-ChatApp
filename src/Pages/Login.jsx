@@ -1,6 +1,6 @@
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { React, useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { React, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
@@ -60,19 +60,20 @@ function Login() {
       throw new Error(error.message);
     }
   };
-  const getUserInformation = async (id) => {
-    const config = {
-      headers: {
-        Authorization: `${JSON.parse(localStorage.getItem("User")).token}`,
-      },
-    };
-    const { data } = await axios.get(
-      `http://localhost:4000/api/users/${id}`,
-      config
-    );
-    return data;
-  };
-  getUserInformation(1).then((data) => console.log(data));
+  // const getUserInformation = async (id) => {
+  //   const config = {
+  //     headers: {
+  //       Authorization: `${JSON.parse(localStorage.getItem("User")).token}`,
+  //     },
+  //   };
+  // };
+  //   const { data } = await axios.get(
+  //     `http://localhost:4000/api/users/${id}`,
+  //     config
+  //   );
+  //   return data;
+  // };
+  // getUserInformation(1).then((data) => console.log(data));
   return (
     <>
       <Form.Label
@@ -94,7 +95,7 @@ function Login() {
             <Form.Control
               id="text-account"
               type="text"
-              placeholder="Account"
+              placeholder="Email"
               onChange={handleUserChange}
               value={User}
               autoFocus
@@ -107,7 +108,7 @@ function Login() {
             <Form.Control
               id="text-password"
               type="password"
-              placeholder="Password"
+              placeholder="Mật khẩu"
               onChange={handlePwdChange}
               value={Pwd}
             />
@@ -141,18 +142,26 @@ function Login() {
 }
 
 export default function UI() {
-  return (
-    <>
-      <Container fluid className="Container">
-        <Row>
-          <Col xs={6} sm={6} lg={6} className="col1">
-            <Slider />
-          </Col>
-          <Col xs={6} sm={6} lg={6} className="col2">
-            <Login />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+  let UIX;
+  try {
+    JSON.parse(localStorage.getItem("User")).token;
+    UIX = <Navigate to="/chat" />;
+  } catch (error) {
+    console.log(error);
+    UIX = (
+      <>
+        <Container fluid className="Container">
+          <Row>
+            <Col xs={6} sm={6} lg={6} className="col1">
+              <Slider />
+            </Col>
+            <Col xs={6} sm={6} lg={6} className="col2">
+              <Login />
+            </Col>
+          </Row>
+        </Container>
+      </>
+    );
+  }
+  return UIX;
 }

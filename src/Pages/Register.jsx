@@ -3,16 +3,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { React, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
-import { Slider } from "./Slider";
+import { Slider } from "../Components/Slider";
 import { Link } from "react-router-dom";
-
-function ShowEyes() {
-  return <i className="bi bi-eye-fill" />;
-}
-
-function HideEyes() {
-  return <i className="bi bi-eye-slash-fill" />;
-}
 
 function Register() {
   const [Eyes, setEyes] = useState(false);
@@ -31,13 +23,16 @@ function Register() {
       <Row>
         <Col sm={6}>
           <div>
-            <Form.Control type="Name" placeholder=" Họ và tên" />
+            <Form.Control type="Name" placeholder="Họ và tên" />
           </div>
         </Col>
 
         <Col sm={6}>
           <div>
-            <Form.Control type="Phonenumber" placeholder=" Số điện thoại" />
+            <Form.Control
+              type="Phonenumber"
+              placeholder="Số điện thoại (nếu có)"
+            />
           </div>
         </Col>
       </Row>
@@ -61,7 +56,7 @@ function Register() {
 
         <Col sm={12}>
           <div>
-            <Form.Control type="Email" placeholder=" Email" />
+            <Form.Control type="Email" placeholder="Email" />
           </div>
         </Col>
       </Row>
@@ -87,8 +82,11 @@ function Register() {
         </Col>
 
         <Col>
-        <div style={{ position: "relative" }}>
-            <Form.Control type="password" placeholder="Nhập lại mật khẩu" />
+          <div style={{ position: "relative" }}>
+            <Form.Control
+              type={Eyes ? "text" : "password"}
+              placeholder="Nhập lại mật khẩu"
+            />
             <div
               onClick={() => setEyes(!Eyes)}
               style={{ right: "5%", top: "25%", position: "absolute" }}
