@@ -3,7 +3,9 @@ import avatar from '../../public/assets/img/avatar.jpg';
 import "../assets/css/profile.css";
 import React from 'react';
 import { Container } from 'react-bootstrap';
-
+import BUT1 from './firstButton';
+import BUT2 from './secButton';
+import BUT3 from './thirdButton';
 export default function Profile(){
   return (
     <>
@@ -11,7 +13,7 @@ export default function Profile(){
         <div xs={2} md={4} lg={6} className='upc'>
           <div className="gradiant"></div>
           <div style={{paddingRight: "15px",textAlign: "Right", fontSize:"15px"}} class="col" >
-              <button>Edit</button>
+              <BUT1>Edit</BUT1>
             </div>          
           <div style={{textAlign:"center"}}className="profile-down">
             <Image src={avatar} fluid/>
@@ -32,7 +34,7 @@ export default function Profile(){
             </div>
             
             <div style={{textAlign: "Right", fontSize:"15px"}} class="col" >
-              <button>Edit</button>
+              <BUT2 ></BUT2>
             </div>
           </div> 
 
@@ -70,7 +72,7 @@ export default function Profile(){
                 nt225@gmail.com
               </div>
               <div class="col">
-                0948872762
+                0123456789
               </div>
             </div>
 
@@ -79,13 +81,13 @@ export default function Profile(){
                 Birthday
               </div>
               <div style ={{fontSize:"17px"}} class="col">
-                Sex
+                Gender
               </div>
             </div>
 
             <div class="row">
               <div class="col">
-                22/05/2005
+                12/30/2005
               </div>
               <div class="col">
                 Female
@@ -99,37 +101,23 @@ export default function Profile(){
       <Container style={{paddingTop: "15px"}}>
         <div className='upc'>
           <div class="row">      
-            <div style={{textAlign: "left", fontSize:"18px", fontWeight:"600"}} class="col" >Address</div>
+            <div style={{textAlign: "left", fontSize:"18px", fontWeight:"600"}} class="col" >Security</div>
             
             <div style={{textAlign: "Right", fontSize:"15px"}} class="col" >
-              <button>Edit</button>
+              <BUT3 ></BUT3>
             </div>
           </div> 
 
           <div class="container text-left">
 
             <div style={{color:"gray"}} class="row">
-              <div style ={{fontSize:"17px"}} class="col">
-                Country
-              </div>
-              <div style ={{fontSize:"17px"}} class="col">
-                City/State
+              <div style ={{fontSize:"17px"}}>
+                Your password
               </div>
             </div>
-
-            <div class="row">
-              <div class="col">
-                Vietnam
-              </div>
-              <div class="col">
-                Hanoi
-              </div>
-            </div>
-
           </div>
         </div>
       </Container>
-
     </>
   )
 }
