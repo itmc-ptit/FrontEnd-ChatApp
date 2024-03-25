@@ -3,9 +3,9 @@ import avatar from '../../public/assets/img/avatar.jpg';
 import "../assets/css/profile.css";
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import BUT1 from './firstButton';
-import BUT2 from './secButton';
-import BUT3 from './thirdButton';
+import BUT1 from '../Components/firstButton';
+import BUT2 from '../Components/secButton';
+import BUT3 from '../Components/thirdButton';
 export default function Profile(){
   return (
     <>
