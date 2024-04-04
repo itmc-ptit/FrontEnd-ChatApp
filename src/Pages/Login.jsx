@@ -16,6 +16,7 @@ function Login() {
   //     "Content-Type": "application/json",
   //   },
   // });
+  const [Eyes, setEyes] = useState(false);
   const [User, setUser] = useState("");
   const [Pwd, setPwd] = useState("");
   const handleUserChange = (event) => setUser(event.target.value);
@@ -32,6 +33,7 @@ function Login() {
       return;
     }
     try {
+      // console.log(JSON.stringify({ email: User, password: Pwd }));
       const response = await axios.post("http://localhost:4000/api/login", {
         email: User,
         password: Pwd,
@@ -107,11 +109,21 @@ function Login() {
           <Col sm={9}>
             <Form.Control
               id="text-password"
-              type="password"
+              type={Eyes ? "text" : "password"}
               placeholder="Mật khẩu"
               onChange={handlePwdChange}
               value={Pwd}
             />
+            <div
+              onClick={() => setEyes(!Eyes)}
+              style={{ right: "5%", top: "44%", position: "absolute" }}
+            >
+              {Eyes ? (
+                <i className="bi bi-eye-fill" />
+              ) : (
+                <i className="bi bi-eye-slash-fill" />
+              )}
+            </div>
           </Col>
           <Col sm={4}>
             <Link to="/forgotpassword">
@@ -145,9 +157,8 @@ export default function UI() {
   let UIX;
   try {
     JSON.parse(localStorage.getItem("User")).token;
-    UIX = <Navigate to="/chat" />;
+    UIX = <Navigate to="chat" />;
   } catch (error) {
-    console.log(error);
     UIX = (
       <>
         <Container fluid className="Container">

@@ -15,7 +15,7 @@ import "../assets/css/Sidemenubar.css";
 import "@flaticon/flaticon-uicons/css/all/all.css";
 import Mode from "../Components/Mode";
 import "bootstrap/js/dist/dropdown";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function SidebarMenu() {
   const [Content, setContent] = useState("Đoạn chat");
@@ -146,7 +146,11 @@ function SidebarMenu() {
                       <span className="d-none d-sm-inline"> Cài đặt</span>
                     )}
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="triggerId">
+                  <div
+                    style={{ zIndex: "1", position: "absolute" }}
+                    className="dropdown-menu"
+                    // aria-labelledby="triggerId"
+                  >
                     <Link to={"/profile"} style={{ textDecoration: "none" }}>
                       <span className="dropdown-item">Hồ sơ của bạn</span>
                     </Link>
@@ -201,7 +205,11 @@ function NavbarMenu() {
         }}
       >
         <Image
-          src="https://avatar.iran.liara.run/public/boy?username=Nguyen_Thanh_Vinh"
+          src={
+            JSON.parse(localStorage.getItem("User")).avatar !== null
+              ? JSON.parse(localStorage.getItem("User")).avatar
+              : "https://ui-avatars.com/api/?name=Nguyen+Thanh+Vinh&background=4A55A2&color=fff"
+          }
           style={{
             height: "36px",
             position: "relative",
@@ -220,7 +228,7 @@ function NavbarMenu() {
           }}
         >
           <span style={{ margin: "0", position: "relative" }} className="ms-3">
-            {"Nguyễn Thành Vinh"}
+            {JSON.parse(localStorage.getItem("User")).name}
             <span
               style={{
                 fontSize: "12px",
@@ -309,22 +317,29 @@ function MainChat() {
 }
 
 export default function Chat() {
-  return (
-    <>
-      <SidebarMenu />
-      <Container
-        style={{
-          width: "100v%",
-          margin: "0",
-          padding: "0",
-          position: "static",
-        }}
-        fluid
-      >
-        <NavbarMenu />
-        <MainChat />
-        <TextChatBox />
-      </Container>
-    </>
-  );
+  let UIX;
+  try {
+    JSON.parse(localStorage.getItem("User")).token;
+    UIX = (
+      <>
+        <SidebarMenu />
+        <Container
+          style={{
+            width: "100v%",
+            margin: "0",
+            padding: "0",
+            position: "static",
+          }}
+          fluid
+        >
+          <NavbarMenu />
+          <MainChat />
+          <TextChatBox />
+        </Container>
+      </>
+    );
+  } catch (error) {
+    UIX = <Navigate to="/" />;
+  }
+  return UIX;
 }
