@@ -1,13 +1,56 @@
 import { Row, Col, Container, Button, Form } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { React, useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { React, useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import { Slider } from "../Components/Slider";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function Register() {
   const [Eyes, setEyes] = useState(false);
+  const [Name, setName] = useState("");
+  const [Pnumber, setPnumber] = useState("");
+  const [User, setUser] = useState("");
+  const [Birth, setBirth] = useState(Date);
+  const [Email, setEmail] = useState("");
+  const [Pwd, setPwd] = useState("");
+  const [APwd, setAPwd] = useState("");
+  const handleNameChange = (event) => setUser(event.target.value);
+  const handlePnumberChange = (event) => setUser(event.target.value);
+  const handleUserChange = (event) => setUser(event.target.value);
+  const handleBirthChange = (event) => setBirth(event.target.value);
+  const handleEmailChange = (event) => setUser(event.target.value);
+  const handlePwdChange = (event) => setUser(event.target.value);
+  const handleAPwdChange = (event) => setUser(event.target.value);
+  const handleUserChange = (event) => setUser(event.target.value);
+  const navigate = useNavigate();
+  const Error_Message = (data) => {
+    const container = document.getElementById("Message");
+    const mess = createRoot(container);
+    mess.render(<Message msg={data} variant="danger" />);
+  };
+  const SubmitHandler = async() {
+    try {
+      const response = await axios.post("http://localhost:4000/api/register", {
+        Name: Name,
+        Phonenumber: Pnumber,
+        account: User,
+        Date: Birth,
+        email: Email,
+        password: Pwd,
+        password: APwd,
+      });
+      const userData = response.data;
+      console.log('Đăng kí thành công!',response.data);
+
+    } catch(error) {
+      console.error('Đăng kí thất bại', error);
+    }
+
+  }
   return (
     <>
       <Form.Label
@@ -132,4 +175,7 @@ export default function UI() {
       </Container>
     </>
   );
+
+  
+
 }
