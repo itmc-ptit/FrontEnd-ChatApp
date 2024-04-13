@@ -1,56 +1,43 @@
 import { Row, Col, Container, Button, Form } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Link, useNavigate, Navigate } from "react-router-dom";
-import { React, useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { React, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import { Slider } from "../Components/Slider";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 function Register() {
-  const [Eyes, setEyes] = useState(false);
-  const [Name, setName] = useState("");
-  const [Pnumber, setPnumber] = useState("");
-  const [User, setUser] = useState("");
-  const [Birth, setBirth] = useState(Date);
-  const [Email, setEmail] = useState("");
-  const [Pwd, setPwd] = useState("");
-  const [APwd, setAPwd] = useState("");
-  const handleNameChange = (event) => setUser(event.target.value);
-  const handlePnumberChange = (event) => setUser(event.target.value);
-  const handleUserChange = (event) => setUser(event.target.value);
-  const handleBirthChange = (event) => setBirth(event.target.value);
-  const handleEmailChange = (event) => setUser(event.target.value);
-  const handlePwdChange = (event) => setUser(event.target.value);
-  const handleAPwdChange = (event) => setUser(event.target.value);
-  const handleUserChange = (event) => setUser(event.target.value);
-  const navigate = useNavigate();
-  const Error_Message = (data) => {
-    const container = document.getElementById("Message");
-    const mess = createRoot(container);
-    mess.render(<Message msg={data} variant="danger" />);
+  const [formData, setFormData] = useState({
+    name: "",
+    phoneNumber: "",
+    account: "",
+    birth: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
-  const SubmitHandler = async() {
+  const handleSubmit = async (e) => {
     try {
-      const response = await axios.post("http://localhost:4000/api/register", {
-        Name: Name,
-        Phonenumber: Pnumber,
-        account: User,
-        Date: Birth,
-        email: Email,
-        password: Pwd,
-        password: APwd,
-      });
-      const userData = response.data;
-      console.log('Đăng kí thành công!',response.data);
-
-    } catch(error) {
-      console.error('Đăng kí thất bại', error);
+      console.log(formData);
+      const response = await axios.post(
+        "http://localhost:4000/api/register",
+        formData
+      );
+      console.log(response.data); // Assuming the API returns some data upon successful registration
+    } catch (error) {
+      if (error.response && error.response.data) {
+        throw new Error(error.response.data.message);
+      }
+      throw new Error(error.message);
     }
+  };
 
-  }
+  const [Eyes, setEyes] = useState(false);
   return (
     <>
       <Form.Label
@@ -66,7 +53,13 @@ function Register() {
       <Row>
         <Col sm={6}>
           <div>
-            <Form.Control type="Name" placeholder="Họ và tên" />
+            <Form.Control
+              type="Name"
+              placeholder="Họ và tên"
+              name="name"
+              onChange={handleChange}
+              value={formData.name}
+            />
           </div>
         </Col>
 
@@ -75,6 +68,9 @@ function Register() {
             <Form.Control
               type="Phonenumber"
               placeholder="Số điện thoại (nếu có)"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
             />
           </div>
         </Col>
@@ -83,7 +79,13 @@ function Register() {
       <Row>
         <Col sm={6}>
           <div>
-            <Form.Control type="account" placeholder="Tài khoản" />
+            <Form.Control
+              type="account"
+              placeholder="Tài khoản"
+              name="account"
+              value={formData.account}
+              onChange={handleChange}
+            />
           </div>
         </Col>
 
@@ -93,13 +95,22 @@ function Register() {
               id="DateTime"
               type="Date"
               style={{ paddingLeft: "0", textAlign: "center" }}
+              name="birth"
+              value={formData.birth}
+              onChange={handleChange}
             />
           </div>
         </Col>
 
         <Col sm={12}>
           <div>
-            <Form.Control type="Email" placeholder="Email" />
+            <Form.Control
+              type="Email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </div>
         </Col>
       </Row>
@@ -110,6 +121,9 @@ function Register() {
             <Form.Control
               type={Eyes ? "text" : "password"}
               placeholder="Mật khẩu"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
             />
             <div
               onClick={() => setEyes(!Eyes)}
@@ -129,6 +143,9 @@ function Register() {
             <Form.Control
               type={Eyes ? "text" : "password"}
               placeholder="Nhập lại mật khẩu"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
             />
             <div
               onClick={() => setEyes(!Eyes)}
@@ -146,7 +163,11 @@ function Register() {
 
       <Row>
         <div>
-          <Button variant="outline-success" style={{ float: "right" }}>
+          <Button
+            variant="outline-success"
+            style={{ float: "right" }}
+            onClick={handleSubmit}
+          >
             Đăng Ký
           </Button>
           <Link to="/sign-in">
@@ -175,7 +196,4 @@ export default function UI() {
       </Container>
     </>
   );
-
-  
-
 }
