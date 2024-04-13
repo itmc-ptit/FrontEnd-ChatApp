@@ -49,7 +49,7 @@ function Login() {
             avatar: userData.data.avatar,
           })
         );
-        navigate("chat");
+        navigate("/chat");
       } else {
         Error_Message("Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại");
       }

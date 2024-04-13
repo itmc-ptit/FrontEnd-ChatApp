@@ -19,8 +19,6 @@ function PanelResetPassword(props) {
   };
   const handleSubmit = async () => {
     try {
-      console.log(`http://localhost:4000/api/reset-password/${id}/${token}`);
-      console.log(JSON.stringify(Newpassword));
       const response = await axios.post(
         `http://localhost:4000/api/reset-password/${id}/${token}`,
         Newpassword
