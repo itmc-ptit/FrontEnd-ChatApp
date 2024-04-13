@@ -1,5 +1,6 @@
 import "./assets/css/index.css";
 import ForgotPassword from "./Pages/ForgotPassword";
+import ResetPassword from "./Pages/ResetPassword";
 import PageNotFound from "./Pages/404";
 import UI from "./Pages/Register";
 import Profile from "./Pages/profile";
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/chat" element={<Chat />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         <Route path="/send-email" element={<MessageForgotPassword />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

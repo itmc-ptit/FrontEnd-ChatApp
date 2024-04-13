@@ -156,8 +156,13 @@ function Login() {
 export default function UI() {
   let UIX;
   try {
+    const navigate = useNavigate();
     JSON.parse(localStorage.getItem("User")).token;
-    UIX = <Navigate to="chat" />;
+    useEffect(() => {
+      {
+        navigate("/chat");
+      }
+    });
   } catch (error) {
     UIX = (
       <>

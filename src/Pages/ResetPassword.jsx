@@ -2,21 +2,28 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/App.css";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
 import { Slider } from "../Components/Slider";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-function PanelForgotPassword() {
-  const [Account, setAccount] = useState("");
-  const handleAccountChange = (event) => setAccount(event.target.value);
+function PanelResetPassword(props) {
+  const id = props.id;
+  const token = props.token;
+  const [Newpassword, setNewpassword] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+  const handleNewpasswordChange = (e) => {
+    const { name, value } = e.target;
+    setNewpassword({ ...Newpassword, [name]: value });
+  };
   const handleSubmit = async () => {
     try {
-      console.log(Account);
+      console.log(`http://localhost:4000/api/reset-password/${id}/${token}`);
+      console.log(JSON.stringify(Newpassword));
       const response = await axios.post(
-        "http://localhost:4000/api/forgot-password",
-        {
-          email: Account,
-        }
+        `http://localhost:4000/api/reset-password/${id}/${token}`,
+        Newpassword
       );
     } catch (error) {
       console.error(error);
@@ -32,7 +39,7 @@ function PanelForgotPassword() {
           width: "100%",
         }}
       >
-        Quên mật khẩu
+        Tạo lại mật khẩu
       </Form.Label>
       <div
         className="panel"
@@ -58,7 +65,7 @@ function PanelForgotPassword() {
               padding: "2% 0",
             }}
           >
-            Tìm tài khoản của bạn
+            Tạo mật khẩu mới
           </Form.Label>
         </div>
         <div
@@ -74,7 +81,7 @@ function PanelForgotPassword() {
               fontSize: "20px",
             }}
           >
-            Vui lòng nhập tài khoản để tìm kiếm lại mật khẩu của bạn.
+            Vui lòng nhập mật khẩu mới cho tài khoản của bạn.
           </p>
           <div
             style={{
@@ -84,11 +91,22 @@ function PanelForgotPassword() {
             <Col sm={12}>
               <Form.Control
                 id="text-account"
-                type="text"
-                placeholder="Tài khoản"
-                onChange={handleAccountChange}
-                value={Account}
+                type="password"
+                placeholder="Mật khẩu"
+                onChange={handleNewpasswordChange}
+                value={Newpassword.password}
+                name="password"
                 autoFocus
+              />
+            </Col>
+            <Col sm={12}>
+              <Form.Control
+                id="text-account"
+                type="password"
+                placeholder="Nhập lại mật khẩu"
+                onChange={handleNewpasswordChange}
+                value={Newpassword.confirmPassword}
+                name="confirmPassword"
               />
             </Col>
           </div>
@@ -100,18 +118,16 @@ function PanelForgotPassword() {
             display: "inline-block",
           }}
         >
-          <Link to="/send-email">
-            <Button
-              variant="outline-primary"
-              style={{
-                margin: "2% 5%",
-                float: "right",
-              }}
-              onClick={handleSubmit}
-            >
-              Tìm tài khoản
-            </Button>
-          </Link>
+          <Button
+            variant="outline-primary"
+            style={{
+              margin: "2% 5%",
+              float: "right",
+            }}
+            onClick={handleSubmit}
+          >
+            Đổi lại mật khẩu
+          </Button>
           <Link to="/sign-in">
             <Button
               variant="outline-danger"
@@ -130,6 +146,7 @@ function PanelForgotPassword() {
 }
 
 export default function UI() {
+  const { id, token } = useParams();
   return (
     <>
       <Container fluid className="Container">
@@ -138,7 +155,7 @@ export default function UI() {
             <Slider />
           </Col>
           <Col xs={6} sm={6} lg={6} className="col2">
-            <PanelForgotPassword />
+            <PanelResetPassword id={id} token={token} />
           </Col>
         </Row>
       </Container>
