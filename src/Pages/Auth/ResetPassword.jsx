@@ -1,12 +1,12 @@
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/css/App.css";
+import "~/assets/css/App.css";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
-import { Slider } from "../Components/Slider";
-import { useEffect, useState } from "react";
+import { Slider } from "~/Components/Slider";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-function PanelResetPassword(props) {
+function ResetPassword(props) {
   const id = props.id;
   const token = props.token;
   const [Newpassword, setNewpassword] = useState({
@@ -142,21 +142,21 @@ function PanelResetPassword(props) {
     </>
   );
 }
-
-export default function UI() {
-  const { id, token } = useParams();
-  return (
-    <>
-      <Container fluid className="Container">
-        <Row>
-          <Col xs={6} sm={6} lg={6} className="col1">
-            <Slider />
-          </Col>
-          <Col xs={6} sm={6} lg={6} className="col2">
-            <PanelResetPassword id={id} token={token} />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
-}
+export default ResetPassword;
+// export default function UI() {
+//   const { id, token } = useParams();
+//   return (
+//     <>
+//       <Container fluid className="Container">
+//         <Row>
+//           <Col xs={6} sm={6} lg={6} className="col1">
+//             <Slider />
+//           </Col>
+//           <Col xs={6} sm={6} lg={6} className="col2">
+//             <PanelResetPassword id={id} token={token} />
+//           </Col>
+//         </Row>
+//       </Container>
+//     </>
+//   );
+// }

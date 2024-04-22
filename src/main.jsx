@@ -1,32 +1,15 @@
 import "./assets/css/index.css";
-import ForgotPassword from "./Pages/ForgotPassword";
-import ResetPassword from "./Pages/ResetPassword";
-import PageNotFound from "./Pages/404";
-import UI from "./Pages/Register";
-import Profile from "./Pages/profile";
-import React from "react";
-import Chat from "./Pages/Messenger";
 import App from "./App";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import MessageForgotPassword from "./Pages/MessageForgotPassword";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 export const IsLogin = false;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/sign-in" element={<App />} />
-        <Route path="/sign-up" element={<UI />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
-        <Route path="/send-email" element={<MessageForgotPassword />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 );

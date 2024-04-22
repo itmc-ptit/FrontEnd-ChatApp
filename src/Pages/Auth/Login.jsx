@@ -1,12 +1,12 @@
+import axios from "axios";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
-import { Link, useNavigate, Navigate } from "react-router-dom";
-import { React, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/css/App.css";
-import Message from "../Components/Message";
-import { Slider } from "../Components/Slider";
-import axios from "axios";
+import "~/assets/css/App.css";
+import Message from "~/Components/Message";
+import { Slider } from "~/Components/Slider";
 
 function Login() {
   // const http = axios.create({
@@ -152,32 +152,30 @@ function Login() {
     </>
   );
 }
-
-export default function UI() {
-  let UIX;
-  try {
-    const navigate = useNavigate();
-    JSON.parse(localStorage.getItem("User")).token;
-    useEffect(() => {
-      {
-        navigate("/chat");
-      }
-    });
-  } catch (error) {
-    UIX = (
-      <>
-        <Container fluid className="Container">
-          <Row>
-            <Col xs={6} sm={6} lg={6} className="col1">
-              <Slider />
-            </Col>
-            <Col xs={6} sm={6} lg={6} className="col2">
-              <Login />
-            </Col>
-          </Row>
-        </Container>
-      </>
-    );
-  }
-  return UIX;
-}
+export default Login;
+// export default function UI() {
+//   let UIX;
+//   try {
+//     const navigate = useNavigate();
+//     JSON.parse(localStorage.getItem("User")).token;
+//     useEffect(() => {
+//       navigate("/chat");
+//     }, []);
+//   } catch (error) {
+//     UIX = (
+//       <>
+//         <Container fluid className="Container">
+//           <Row>
+//             <Col xs={6} sm={6} lg={6} className="col1">
+//               <Slider />
+//             </Col>
+//             <Col xs={6} sm={6} lg={6} className="col2">
+//               <Login />
+//             </Col>
+//           </Row>
+//         </Container>
+//       </>
+//     );
+//   }
+//   return UIX;
+// }

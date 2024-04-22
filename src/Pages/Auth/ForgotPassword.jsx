@@ -1,17 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/css/App.css";
+import "../../assets/css/App.css";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
-import { Slider } from "../Components/Slider";
+import { Slider } from "../../Components/Slider";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-function PanelForgotPassword() {
+function ForgotPassword() {
   const [Account, setAccount] = useState("");
   const handleAccountChange = (event) => setAccount(event.target.value);
   const handleSubmit = async () => {
     try {
-      console.log(Account);
       const response = await axios.post(
         "http://localhost:4000/api/forgot-password",
         {
@@ -128,20 +127,20 @@ function PanelForgotPassword() {
     </>
   );
 }
-
-export default function UI() {
-  return (
-    <>
-      <Container fluid className="Container">
-        <Row>
-          <Col xs={6} sm={6} lg={6} className="col1">
-            <Slider />
-          </Col>
-          <Col xs={6} sm={6} lg={6} className="col2">
-            <PanelForgotPassword />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
-}
+export default ForgotPassword;
+// export default function UI() {
+//   return (
+//     <>
+//       <Container fluid className="Container">
+//         <Row>
+//           <Col xs={6} sm={6} lg={6} className="col1">
+//             <Slider />
+//           </Col>
+//           <Col xs={6} sm={6} lg={6} className="col2">
+//             <PanelForgotPassword />
+//           </Col>
+//         </Row>
+//       </Container>
+//     </>
+//   );
+// }

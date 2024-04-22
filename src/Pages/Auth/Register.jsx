@@ -1,9 +1,9 @@
 import { Row, Col, Container, Button, Form } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { React, useState } from "react";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/css/App.css";
-import { Slider } from "../Components/Slider";
+import "~/assets/css/App.css";
+import { Slider } from "~/Components/Slider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -170,7 +170,7 @@ function Register() {
           >
             Đăng Ký
           </Button>
-          <Link to="/sign-in">
+          <Link to="/">
             <Button variant="outline-danger" style={{ float: "right" }}>
               Đã có tài khoản
             </Button>
@@ -180,20 +180,4 @@ function Register() {
     </>
   );
 }
-
-export default function UI() {
-  return (
-    <>
-      <Container fluid className="Container">
-        <Row>
-          <Col xs={6} sm={6} lg={6} className="col1">
-            <Slider />
-          </Col>
-          <Col xs={6} sm={6} lg={6} className="col2">
-            <Register />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
-}
+export default Register;

@@ -5,7 +5,6 @@ import {
   Col,
   Navbar,
   Button,
-  Nav,
   Image,
   Form,
 } from "react-bootstrap";
@@ -124,7 +123,7 @@ function SidebarMenu() {
                   <hr style={{ width: "100%" }} />
                   {Text && (
                     <span className="ms-3 d-none d-sm-inline">
-                      <i class="bi bi-sun-fill"></i> {" Chế độ: "}
+                      <i className="bi bi-sun-fill"></i> {" Chế độ: "}
                     </span>
                   )}
                   <Mode className="ms-3" />
