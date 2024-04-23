@@ -1,5 +1,5 @@
-import { Outlet } from "react-router";
-import SideBar from "./Components/SideBar";
+import { Outlet } from 'react-router'
+import SideBar from './Components/SideBar'
 
 function SideBarChat() {
   return (
@@ -7,7 +7,7 @@ function SideBarChat() {
       <SideBar />
       <Outlet />
     </div>
-  );
+  )
 }
 
-export default SideBarChat;
+export default SideBarChat

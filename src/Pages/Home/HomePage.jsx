@@ -1,15 +1,7 @@
-import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { Outlet, useNavigate } from "react-router";
-import { Slider } from "~/Components/Slider";
+import { Col, Container, Row } from 'react-bootstrap'
+import { Outlet, useNavigate } from 'react-router'
+import { Slider } from '~/Components/Slider'
 function Home() {
-  const token = JSON.parse(localStorage.getItem("User"));
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (token) {
-      navigate("/chat");
-    }
-  }, [token]);
   return (
     <Container fluid className="Container">
       <Row>
@@ -21,7 +13,7 @@ function Home() {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }
 
-export default Home;
+export default Home

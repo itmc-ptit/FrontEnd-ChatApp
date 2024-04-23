@@ -1,18 +1,18 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/App.css";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/css/App.css'
 // import UI from "./Pages/Login";
-import { Route, Routes } from "react-router-dom";
-import HomePage from "./Pages/Home/HomePage";
-import Register from "~/Pages/Auth/Register";
-import Login from "~/Pages/Auth/Login";
-import ForgotPassword from "./Pages/Auth/ForgotPassword";
-import ResetPassword from "./Pages/Auth/ResetPassword";
-import MessageForgotPassword from "./Components/MessageForgotPassword";
-import PageNotFound from "./Pages/PageNotFound";
-import Profile from "./Pages/Profile";
-import ChatPage from "./Pages/Chat/ChatPage";
-import MyChat from "./Pages/Chat/SideBarChat/Screens/MyChat";
-import Notification from "./Pages/Chat/SideBarChat/Screens/Notification";
+import { Route, Routes } from 'react-router-dom'
+import HomePage from './Pages/Home/HomePage'
+import Register from '~/Pages/Auth/Register'
+import Login from '~/Pages/Auth/Login'
+import ForgotPassword from './Pages/Auth/ForgotPassword'
+import ResetPassword from './Pages/Auth/ResetPassword'
+import MessageForgotPassword from './Components/MessageForgotPassword'
+import PageNotFound from './Pages/PageNotFound'
+import Profile from './Pages/Profile'
+import ChatPage from './Pages/Chat/ChatPage'
+import MyChat from './Pages/Chat/SideBarChat/Screens/MyChat'
+import Notification from './Pages/Chat/SideBarChat/Screens/Notification'
 // import Chat from "./Pages/Messenger";
 
 export default function App() {
@@ -34,5 +34,5 @@ export default function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
-  );
+  )
 }
