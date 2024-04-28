@@ -9,6 +9,10 @@ function ChatPage() {
   const { chats, user, setChats } = ChatState()
 
   useEffect(() => {
+    if (!user) {
+      navigate('/')
+      return
+    }
     setChats([1, 2, 3]) // mỗi khi có sự thay đổi chats thì function này rerender lại
   }, [])
   console.log(chats)

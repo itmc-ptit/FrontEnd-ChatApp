@@ -13,6 +13,7 @@ import Profile from './Pages/Profile'
 import ChatPage from './Pages/Chat/ChatPage'
 import MyChat from './Pages/Chat/SideBarChat/Screens/MyChat'
 import Notification from './Pages/Chat/SideBarChat/Screens/Notification'
+import { ChatState } from './Context/ChatProvider'
 // import Chat from "./Pages/Messenger";
 
 export default function App() {

@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router'
 
 const ChatContext = createContext({})
 const ChatProvider = ({ children }) => {
-  const [user, setUser] = useState({}) // thông tin user
+  const [user, setUser] = useState(null) // thông tin user
   const [selectChat, setSelectChat] = useState({}) // dùng đẻ hiển thị chat đang được chọn
   const [notifications, setNotifications] = useState([]) // thông báo khi có tin nhắn mới
   const [chats, setChats] = useState([]) // danh sách chat của mình
   const navigate = useNavigate()
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('User'))
-    if (!userInfo.token) {
+    if (!userInfo) {
       navigate('/')
     } else {
       navigate('/chat')
