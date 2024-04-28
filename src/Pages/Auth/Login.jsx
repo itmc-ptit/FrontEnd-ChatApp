@@ -1,12 +1,13 @@
-import axios from "axios";
-import { Button, Row, Col, Form, Container } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "~/assets/css/App.css";
-import Message from "~/Components/Message";
-import { Slider } from "~/Components/Slider";
+import axios from 'axios'
+import { Button, Row, Col, Form, Container } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '~/assets/css/App.css'
+import Message from '~/Components/Message'
+import { Slider } from '~/Components/Slider'
+import { ChatState } from '~/Context/ChatProvider'
 
 function Login() {
   // const http = axios.create({
@@ -16,52 +17,52 @@ function Login() {
   //     "Content-Type": "application/json",
   //   },
   // });
-  const [Eyes, setEyes] = useState(false);
-  const [User, setUser] = useState("");
-  const [Pwd, setPwd] = useState("");
-  const handleUserChange = (event) => setUser(event.target.value);
-  const handlePwdChange = (event) => setPwd(event.target.value);
-  const navigate = useNavigate();
+  const { setUser } = ChatState()
+  const [Eyes, setEyes] = useState(false)
+  const [email, setEmail] = useState('')
+  const [Pwd, setPwd] = useState('')
+  const handleUserChange = (event) => setEmail(event.target.value)
+  const handlePwdChange = (event) => setPwd(event.target.value)
+  const navigate = useNavigate()
   const Error_Message = (data) => {
-    const container = document.getElementById("Message");
-    const mess = createRoot(container);
-    mess.render(<Message msg={data} variant="danger" />);
-  };
+    const container = document.getElementById('Message')
+    const mess = createRoot(container)
+    mess.render(<Message msg={data} variant="danger" />)
+  }
   const SubmitHandler = async () => {
-    if (!User || !Pwd) {
-      Error_Message("Vui lòng nhập đủ tài khoản và mật khẩu");
-      return;
+    if (!email || !Pwd) {
+      Error_Message('Vui lòng nhập đủ tài khoản và mật khẩu')
+      return
     }
     try {
       // console.log(JSON.stringify({ email: User, password: Pwd }));
-      const response = await axios.post("http://localhost:4000/api/login", {
-        email: User,
-        password: Pwd,
-      });
-      const userData = response.data;
+      const response = await axios.post('http://localhost:4000/api/login', {
+        email: email,
+        password: Pwd
+      })
+      const userData = response.data
       if (response.status == 200 && userData.data.token) {
-        localStorage.setItem(
-          "User",
-          JSON.stringify({
-            token: "Bearer " + userData.data.token,
-            name: userData.data.name,
-            email: userData.data.email,
-            avatar: userData.data.avatar,
-          })
-        );
-        navigate("/chat");
+        const user = {
+          token: 'Bearer ' + userData.data.token,
+          name: userData.data.name,
+          email: userData.data.email,
+          avatar: userData.data.avatar
+        }
+        localStorage.setItem('User', JSON.stringify(user))
+        setUser(user)
+        navigate('/chat')
       } else {
-        Error_Message("Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại");
+        Error_Message('Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại')
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        Error_Message(error.response.data.message);
-        throw new Error(error.response.data.message);
+        Error_Message(error.response.data.message)
+        throw new Error(error.response.data.message)
       }
-      Error_Message(error.message);
-      throw new Error(error.message);
+      Error_Message(error.message)
+      throw new Error(error.message)
     }
-  };
+  }
   // const getUserInformation = async (id) => {
   //   const config = {
   //     headers: {
@@ -80,10 +81,10 @@ function Login() {
     <>
       <Form.Label
         style={{
-          paddingTop: "10vh",
-          fontSize: "60px",
-          textAlign: "center",
-          width: "100%",
+          paddingTop: '10vh',
+          fontSize: '60px',
+          textAlign: 'center',
+          width: '100%'
         }}
       >
         Đăng nhập
@@ -99,7 +100,7 @@ function Login() {
               type="text"
               placeholder="Email"
               onChange={handleUserChange}
-              value={User}
+              value={email}
               autoFocus
             />
           </Col>
@@ -109,28 +110,21 @@ function Login() {
           <Col sm={9}>
             <Form.Control
               id="text-password"
-              type={Eyes ? "text" : "password"}
+              type={Eyes ? 'text' : 'password'}
               placeholder="Mật khẩu"
               onChange={handlePwdChange}
               value={Pwd}
             />
-            <div
-              onClick={() => setEyes(!Eyes)}
-              style={{ right: "5%", top: "44%", position: "absolute" }}
-            >
-              {Eyes ? (
-                <i className="bi bi-eye-fill" />
-              ) : (
-                <i className="bi bi-eye-slash-fill" />
-              )}
+            <div onClick={() => setEyes(!Eyes)} style={{ right: '5%', top: '44%', position: 'absolute' }}>
+              {Eyes ? <i className="bi bi-eye-fill" /> : <i className="bi bi-eye-slash-fill" />}
             </div>
           </Col>
           <Col sm={4}>
             <Link to="/forgotpassword">
               <Button
                 style={{
-                  textDecoration: "none",
-                  padding: "0",
+                  textDecoration: 'none',
+                  padding: '0'
                 }}
                 variant="link"
               >
@@ -150,32 +144,6 @@ function Login() {
         </Row>
       </div>
     </>
-  );
+  )
 }
-export default Login;
-// export default function UI() {
-//   let UIX;
-//   try {
-//     const navigate = useNavigate();
-//     JSON.parse(localStorage.getItem("User")).token;
-//     useEffect(() => {
-//       navigate("/chat");
-//     }, []);
-//   } catch (error) {
-//     UIX = (
-//       <>
-//         <Container fluid className="Container">
-//           <Row>
-//             <Col xs={6} sm={6} lg={6} className="col1">
-//               <Slider />
-//             </Col>
-//             <Col xs={6} sm={6} lg={6} className="col2">
-//               <Login />
-//             </Col>
-//           </Row>
-//         </Container>
-//       </>
-//     );
-//   }
-//   return UIX;
-// }
+export default Login
