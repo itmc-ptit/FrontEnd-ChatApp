@@ -1,22 +1,14 @@
 import axios from 'axios'
-import { Button, Row, Col, Form, Container } from 'react-bootstrap'
+import { Button, Row, Col, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '~/assets/css/App.css'
 import Message from '~/Components/Message'
-import { Slider } from '~/Components/Slider'
 import { ChatState } from '~/Context/ChatProvider'
 
 function Login() {
-  // const http = axios.create({
-  //   baseURL: "http:localhost:4000",
-  //   timeout: 10000,
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
   const { setUser } = ChatState()
   const [Eyes, setEyes] = useState(false)
   const [email, setEmail] = useState('')
@@ -44,6 +36,7 @@ function Login() {
       if (response.status == 200 && userData.data.token) {
         const user = {
           token: 'Bearer ' + userData.data.token,
+          userId: userData.data.userId,
           name: userData.data.name,
           email: userData.data.email,
           avatar: userData.data.avatar
@@ -120,7 +113,7 @@ function Login() {
             </div>
           </Col>
           <Col sm={4}>
-            <Link to="/forgotpassword">
+            <Link to="/forgot-password">
               <Button
                 style={{
                   textDecoration: 'none',

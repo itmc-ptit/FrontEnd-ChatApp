@@ -1,0 +1,15 @@
+.Container
+{
+    display: flex;
+    flex-direction: column !important;
+}
+
+.col1
+{
+    flex: 50%;
+}
+
+.col2
+{
+    flex: 50%;
+}

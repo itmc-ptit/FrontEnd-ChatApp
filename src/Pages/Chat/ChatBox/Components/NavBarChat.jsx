@@ -1,8 +1,9 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { Image, Navbar } from 'react-bootstrap'
 import { ChatState } from '~/Context/ChatProvider'
 
 function NavBarChat() {
-  const { user } = ChatState()
+  const { selectChat } = ChatState()
   return (
     <Navbar
       style={{
@@ -14,9 +15,9 @@ function NavBarChat() {
     >
       <Image
         src={
-          user?.avatar !== null
-            ? user?.avatar
-            : 'https://ui-avatars.com/api/?name=Nguyen+Thanh+Vinh&background=4A55A2&color=fff'
+          selectChat?.photo !== null
+            ? selectChat?.photo
+            : `https://ui-avatars.com/api/?name=${(selectChat?.name).replace(' ', '+')}&background=4A55A2&color=fff`
         }
         style={{
           height: '36px',
@@ -36,7 +37,7 @@ function NavBarChat() {
         }}
       >
         <span style={{ margin: '0', position: 'relative' }} className="ms-3">
-          {user?.name}
+          {selectChat?.name}
           <span
             style={{
               fontSize: '12px',

@@ -6,7 +6,7 @@ import { ChatState } from '~/Context/ChatProvider'
 function Home() {
   const navigate = useNavigate()
   const { user } = ChatState()
-  console.log('user', user)
+  // console.log('user', user)
   useEffect(() => {
     if (user) {
       navigate('/chat')
@@ -16,10 +16,10 @@ function Home() {
   return (
     <Container fluid className="Container">
       <Row>
-        <Col xs={6} sm={6} lg={6} className="col1">
+        <Col className="col1">
           <Slider />
         </Col>
-        <Col xs={6} sm={6} lg={6} className="col2">
+        <Col className="col2">
           <Outlet />
         </Col>
       </Row>

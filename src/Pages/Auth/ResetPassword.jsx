@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "~/assets/css/App.css";
-import { Col, Row, Container, Form, Button } from "react-bootstrap";
-import { Slider } from "~/Components/Slider";
-import { Link, useParams } from "react-router-dom";
+import { Col, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function ResetPassword(props) {
