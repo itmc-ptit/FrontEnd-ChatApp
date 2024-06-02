@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { ChatState } from "~/Context/ChatProvider";
-import UserComponent from "./userComponent";
+import UserComponent from "./UserComponent";
 import { useEffect, useState } from "react";
 
 export default function ChatSide() {
